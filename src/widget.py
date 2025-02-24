@@ -1,3 +1,6 @@
+def mask_account_number(number):
+    pass
+
 
 def mask_account_card(account_info: str) -> str:
     """
