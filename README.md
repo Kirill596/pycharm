@@ -50,3 +50,28 @@ git clone https://github.com/username/my_bank_operations_project.git
      for card_number in card_number_generator(1, 5):
          print(card_number)
      ```
+# Модуль `decorators`
+
+Модуль содержит декоратор для логирования вызовов функций.
+
+## Декоратор `log`
+
+Декоратор `log` логирует вызовы функций, включая:
+- Время вызова.
+- Имя функции.
+- Результат выполнения (успех или ошибка).
+- Входные параметры (в случае ошибки).
+
+### Параметры:
+- `filename` (опционально): Имя файла для записи логов. Если не указано, логи выводятся в консоль.
+
+### Пример использования:
+
+```python
+from decorators import log
+
+@log(filename="mylog.txt")
+def add(a: int, b: int) -> int:
+    return a + b
+
+add(1, 2)
