@@ -20,3 +20,33 @@ git clone https://github.com/username/my_bank_operations_project.git
 ## Тестирование: 
 
 было проведено тестирование каждой функции
+
+# Модуль `generators`
+
+Модуль содержит функции для работы с транзакциями:
+
+1. **`filter_by_currency`**:
+   - Фильтрует транзакции по заданной валюте.
+   - Пример использования:
+     ```python
+     usd_transactions = filter_by_currency(transactions, "USD")
+     for transaction in usd_transactions:
+         print(transaction)
+     ```
+
+2. **`transaction_descriptions`**:
+   - Возвращает описания транзакций.
+   - Пример использования:
+     ```python
+     descriptions = transaction_descriptions(transactions)
+     for description in descriptions:
+         print(description)
+     ```
+
+3. **`card_number_generator`**:
+   - Генерирует номера банковских карт в заданном диапазоне.
+   - Пример использования:
+     ```python
+     for card_number in card_number_generator(1, 5):
+         print(card_number)
+     ```

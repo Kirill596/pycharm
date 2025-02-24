@@ -1,4 +1,3 @@
-
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -20,7 +19,6 @@ def mask_account_card(card_info: str) -> str:
         else:
             return "Счет"  # Если нет номера счета, возвращаем только "Счет"
     else:
-
         if len(parts) > 1:
             card_name = " ".join(parts[:-1])
             card_number = parts[-1]
@@ -33,4 +31,3 @@ def mask_account_card(card_info: str) -> str:
 def get_date(date: str) -> str:
     new_date = date.split("-")
     return f"{new_date[2][:2]}.{new_date[1]}.{new_date[0]}"
-
