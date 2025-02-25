@@ -17,7 +17,7 @@ git clone https://github.com/username/my_bank_operations_project.git
 
 Этот проект лицензирован по [лицензии MIT](LICENSE).
 
-## Тестирование: 
+## Тестирование pytest: 
 
 было проведено тестирование каждой функции
 

@@ -40,7 +40,7 @@ def test_mask_account_card(input_data, expected_output):
         ("Unknown 1234567890123456", "Unknown 1234 56** **** 3456"),  # Неизвестный тип
     ],
 )
-def mask_account_card_invalid_input(input_data, expected_output):
+def test_mask_account_card_invalid_input(input_data, expected_output):
     """
     Тестирование функции mask_account_card с некорректными входными данными.
     Проверяем, что функция корректно обрабатывает некорректные данные.
