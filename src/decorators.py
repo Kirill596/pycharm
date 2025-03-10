@@ -17,7 +17,7 @@ def log(filename: Optional[str] = None) -> Callable:
 
             try:
                 result: object = func(*args, **kwargs)
-                log_message += f" ok\n"
+                log_message += " ok\n"  # Исправлено: убрана f-строка
             except Exception as e:
                 log_message += f" error: {type(e).__name__}. Inputs: {args}, {kwargs}\n"
                 result = None
