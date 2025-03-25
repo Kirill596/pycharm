@@ -1,4 +1,4 @@
-import pytest
+
 from unittest.mock import patch, mock_open
 from src.utils.file_reader import read_transactions_from_csv, read_transactions_from_excel
 
@@ -41,4 +41,3 @@ def test_read_transactions_from_excel(mock_read_excel):
 
     # Проверяем результат
     assert result == mock_data
-

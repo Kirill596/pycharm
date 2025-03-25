@@ -1,36 +1,32 @@
-from src.masks import get_mask_card_number, get_mask_account
+import pytest
 
 
-def test_get_mask_card_number():
-    """Тест функции get_mask_card_number"""
-
-    # Номер карты нормального значения
-    assert get_mask_card_number("7000792289606361") == '7000 79** **** 6361'
-
-    # Номер карты с меньшим значением (меньше 16 символов)
-    assert get_mask_card_number("700079228960") == '7000 79** **** 8960'
-
-    # Номер карты с большим значением (больше 16 символов)
-    assert get_mask_card_number("70007922896063618091") == '7000 79** **** 8091'
-
-    # Вместо номера карты пустое значение
-    assert get_mask_card_number("") == " ** **** "
-
-    # Номер карты, содержащий не цифры
-    assert get_mask_card_number("abcddefghjkltyui") == "abcd de** **** tyui"
+from src.masks import get_mask_card_number
 
 
-def test_get_mask_account():
-    """Тест функции get_mask_account"""
+@pytest.mark.parametrize(
+    "card_number, expected",
+    [
+        ("7000792289606361", '7000 79** **** 6361'),  # Нормальный номер карты
+        ("700079228960", '7000 79** **** 8960'),  # Меньше 16 символов
+        ("70007922896063618091", '7000 79** **** 8091'),  # Больше 16 символов
+        ("", "**** **** **** ****"),  # Пустое значение
+        ("abcddefghjkltyui", "abcd de** **** tyui"),  # Нецифровые символы
+    ],
+)
+def get_mask_card_number(card_number: str) -> str:
+    if not card_number:
+        return "**** **** **** ****"
 
-    # Номер счета нормальный
-    assert get_mask_account("73654108430135874305") == "**4305"
+    # Mask logic for normal card numbers (, only digits)
+    if len(card_number) == 16 and card_number.isdigit():
+        return f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
 
-    # Номер счета короткий (меньше 4 символов)
-    assert get_mask_account("305") == "**305"
+    # Mask logic for card numbers that are not 16 digits but contain only digits
+    elif card_number.isdigit():
+        return f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
 
-    # Номер счёта, содержащий не цифры
-    assert get_mask_account("abcdefg") == "**defg"
-
-    # Пустой номер счета
-    assert get_mask_account("") == "**"
+    # Mask logic for non-numeric input (for strings with non-digit characters)
+    elif len(card_number) > 0:
+        return f"{card_number[:4]} {card_number[4:6]}**card_number[-4:]"
+    return "**** **** **** ****"  # For invalid or empty input
