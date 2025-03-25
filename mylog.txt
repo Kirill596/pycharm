@@ -1,0 +1,1 @@
+2025-03-25 12:54:50.656871 - divide error: ZeroDivisionError. Inputs: (1, 0), {}
