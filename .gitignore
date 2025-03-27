@@ -30,3 +30,6 @@ var/
 
 # macOS
 .DS_Store
+
+# Игнорировать файл .env
+.env

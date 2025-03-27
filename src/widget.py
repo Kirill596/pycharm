@@ -1,10 +1,13 @@
+import re
+from src.masks import mask_card_number, mask_account_number
+
 
 def mask_account_card(account_info: str) -> str:
     """
     Маскирует номер карты или счета.
 
     Args:
-        account_info (str): Строка формата 'Visa Platinum 7000792289606361' 
+        account_info (str): Строка формата 'Visa Platinum 7000792289606361'
                             или 'Счет 73654108430135874305'.
 
     Returns:
@@ -22,20 +25,3 @@ def mask_account_card(account_info: str) -> str:
         return f"{name} {mask_account_number(number)}"
     else:
         return f"{name} {mask_card_number(number)}"
-
-
-def get_date(date_str: str) -> str:
-    """
-    Преобразует дату из ISO-формата в формат 'ДД.ММ.ГГГГ'.
-
-    Args:
-        date_str (str): Строка с датой в формате 'YYYY-MM-DDTHH:MM:SS.mmmmmm'.
-
-    Returns:
-        str: Строка с датой в формате 'ДД.ММ.ГГГГ'.
-    """
-    try:
-        date_obj = datetime.fromisoformat(date_str)
-        return date_obj.strftime("%d.%m.%Y")
-    except ValueError:
-        raise ValueError("Неверный формат даты")
